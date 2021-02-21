@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js'></script>
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+
+    <!-- userListArray: [
+{
+name: 'Otis',
+gender: 'male',
+},
+{
+name: 'Sara',
+gender: 'famale',
+},
+], -->
+
+    <h1 v-for="value,index in computedUser" :key="value.name">{{ value.name}}</h1>
+    <!-- userListObj: {
+otis: 'male',
+sara: 'famale',
+}, -->
+    <h1 v-for="value,key,index in userListObj" :key="key">{{ key}}</h1>
+
+    <span v-for="num in 10">{{num}},</span>
+    <div>
+      <span v-for="n in 10">{{ n }} </span>
+    </div>
+
+    <!-- <div :class="{active:show}">
+      Now you see me
+    </div>
+    <div :class="{active:!show}">
+      Now you don't
+    </div>
+    <div>
+      {{ show? "Now you see me" : "Now you don't" }}
+    </div> -->
+    <!-- <div v-if="type === 'A'">
+      A content
+      <input type="text" key="AI" />
+    </div>
+    <div v-else-if="type === 'B'">
+      B content
+      <input type="text" key="BI" />
+    </div>
+    <div v-else-if="type === 'C'">
+      C content
+      <input type="text" />
+    </div>
+    <div v-else>
+      Not content
+      <input type="text" />
+    </div>
+    <div>
+      {{ content}}
+    </div> -->
+  </div>
+
+  <script>
+    const dataMapping = {
+      A: 'A content',
+      B: 'B content',
+      C: 'C content',
+    }
+    new Vue({
+      el: '#app',
+      data: {
+        show: true,
+        type: 'A',
+        userListArray: [
+          {
+            name: 'Otis',
+            gender: 'male',
+          },
+          {
+            name: 'Sara',
+            gender: 'famale',
+          },
+        ],
+        userListObj: {
+          otis: 'male',
+          sara: 'famale',
+        },
+      },
+      computed: {
+        computedUser() {
+          return this.userListArray.filter((user) => {
+            return user.gender === 'male'
+          })
+        },
+        content() {
+          return dataMapping[this.type] || 'No Content'
+        },
+      },
+    })
+  </script>
+</body>
+
+</html>

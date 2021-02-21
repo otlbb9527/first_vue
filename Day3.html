@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    c:{{ reversedMessage }}
+    <br />
+    f:{{ reversedMessage1 () }}
+  </div>
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.12/vue.js'
+    integrity='sha512-YXLGLsQBiwHPHLCAA9npZWhADUsHECjkZ71D1uzT2Hpop82/eLnmFb6b0jo8pK4T0Au0g2FETrRJNblF/46ZzQ=='
+    crossorigin='anonymous'></script>
+
+  <script>
+    let vm = new Vue({
+      el: '#app',
+      data: {
+        message: 'Hello'
+      },
+      computed: {
+        now:
+          function () {
+            console.log('now')
+            return Date.now()
+          },
+        m1() {
+          console.log('m1')
+          return this.message + 1
+        },
+        m2() {
+          console.log('m2')
+          return this.m1 + 1
+        },
+        reversedMessage: function () {
+          console.log('computed')
+          return this.message.split('').reverse().join('')
+        },
+      },
+      methods: {
+        reversedMessage1: function () {
+          console.log('methods1')
+          return this.message.split('').reverse().join('')
+        },
+        reversedMessage2: function () {
+          console.log('methods2')
+          console.log(this.message.split('').reverse().join(''))
+        },
+      },
+    })
+  </script>
+</body>
+
+</html>

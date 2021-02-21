@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js'></script>
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <a v-bind:href="link.href" v-bind:target="link.target">{{link.content}}</a>
+    <input :type="input.type" :data-aaa="link.content" />
+
+    <div :class="classContent">test</div>
+  </div>
+
+  <script>
+    ; (function () {
+      let vm = new Vue({
+        el: '#app',
+        data() {
+          return {
+            link: {
+              href: 'https://www.google.com/',
+              target: '_blank',
+              content: 'Google',
+            },
+            input: {
+              type: 'text',
+            },
+            classContent: "aaa  bbb ccc",
+          }
+        },
+      })
+    })()
+
+  </script>
+
+</body>
+
+</html>
