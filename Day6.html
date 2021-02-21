@@ -5,10 +5,30 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.8/vue.js'
+    integrity='sha512-GD/8lMbRBL/mdNprXO8arveCcvbaBqqu2+OVHEuAtPhzO3hdTQ4Lawrm2NoIssnaWAWJkJylXtuweSZs23gtaA=='
+    crossorigin='anonymous'></script>
   <title>Document</title>
 </head>
 
 <body>
+  <div id="app">
+    <!-- <h1>{{count}}</h1>
+    <button v-on:click="count -= 1">Prev</button>
+    <button v-on:click="count +=1">Next</button> -->
+    <button v-for="num of total" @click="count = num-1">{{num-1}}</button>
+    <h1>{{count}}</h1>
+  </div>
+
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        count: 0,
+        total: 4,
+      },
+    })
+  </script>
 
 </body>
 
