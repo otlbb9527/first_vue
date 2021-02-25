@@ -16,10 +16,13 @@
     <!-- <h1>{{count}}</h1>
     <button v-on:click="count -= 1">Prev</button>
     <button v-on:click="count +=1">Next</button> -->
-    <button v-for="num of total" @click="count = num-1">{{num-1}}</button>
-    <h1>{{count}}</h1>
-    <!-- <button v-for="(content,index) of contents" @click="count =index" >{{index}}</button>
-    <h1>{{contents[count]}}</h1> -->
+    <!-- <button v-for="num of total" @click="count = num-1">{{num-1}}</button>
+    <h1>{{count}}</h1> -->
+    <button v-for="(content,index) of contents" @click="count =index" >{{index}}</button>
+    <div>
+      <h1 v-for="(content,index) of contents" v-show="index === count">{{content}}</h1>
+    </div>
+  
   </div>
 
   <script>
