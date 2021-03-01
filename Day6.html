@@ -31,14 +31,14 @@
       </a>
     </div>
 
-    <div style="height: 100px; border: 1px solid; overflow-y: scroll;">
+    <div @scroll="scrollHandler" style="height: 100px; border: 1px solid; overflow-y: scroll;">
       <div style="height: 500px;"></div>
     </div>
 
     <!-- <button @click="warn('Form cannot be submitted yet.',$event)">
       Submit
     </button> -->
-
+    <input @click.right.prevent="nestClick('mouse right')" type="text">
   </div>
 
   <script>
@@ -60,12 +60,26 @@
         nestClick(num) {
           console.log(num)
         },
+        scrollHandler() {
+          console.log('SSS')
+        },
+        resizeHandler() {
+          console.log('RRR')
+        },
         warn(message, event) {
           if (event) {
             event.preventDefault()
           }
           alert(message)
         },
+      },
+      mounted() {
+        window.addEventListener('scroll', this.scrollHandler)
+        window.addEventListener('resize', this.resizeHandler)
+      },
+      beforeDestroy() {
+        window.removeEventListener('scroll', this.scrollHandler)
+        window.removeEventListener('resize', this.resizeHandler)
       },
     })
   </script>
