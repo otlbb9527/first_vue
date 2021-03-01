@@ -19,11 +19,26 @@
     <!-- <button v-for="num of total" @click="count = num-1">{{num-1}}</button>
     <h1>{{count}}</h1> -->
     <button v-for="(content,index) of contents" @click="clickHandler" :data-index="index">{{index}}</button>
-    <button v-for="(content,index) of contents" @click="clickHandler2(index, $event)" :data-index="index">{{index}}</button>
+    <button v-for="(content,index) of contents" @click="clickHandler2(index, $event)"
+      :data-index="index">{{index}}</button>
     <div>
       <h1 v-for="(content,index) of contents" v-show="index === count">{{content}}</h1>
     </div>
-  
+
+    <div @click.self="nestClick ('1')" style="border: 1px solid;">
+      <a href="#" @click.self="nestClick ('2')" style="padding: 10px;">
+        <button @click.self="nestClick ('3')">aaa</button>
+      </a>
+    </div>
+
+    <div style="height: 100px; border: 1px solid; overflow-y: scroll;">
+      <div style="height: 500px;"></div>
+    </div>
+
+    <!-- <button @click="warn('Form cannot be submitted yet.',$event)">
+      Submit
+    </button> -->
+
   </div>
 
   <script>
@@ -32,15 +47,24 @@
       data: {
         count: 0,
         total: 4,
-        contents: ['aaa','bbb','ccc','ddd'],
+        contents: ['aaa', 'bbb', 'ccc', 'ddd'],
       },
       methods: {
-        clickHandler (event) {
-        this.count=event.target.dataset.index * 1
+        clickHandler(event) {
+          this.count = event.target.dataset.index * 1
         },
         clickHandler2(index, event) {
           console.log(event)
           this.count = index
+        },
+        nestClick(num) {
+          console.log(num)
+        },
+        warn(message, event) {
+          if (event) {
+            event.preventDefault()
+          }
+          alert(message)
         },
       },
     })
