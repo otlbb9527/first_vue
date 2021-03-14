@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.9/vue.js'
+    integrity='sha512-o9SZrtqlGkpa7EF+dDrNjEdRFFYhymlrBzDKpolHNolxsyx0IcXAbEm9i1e8QpoiMgEdKZVtY8XiK1t8i6jVDA=='
+    crossorigin='anonymous'></script>
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- <div id="components-demo">
+    <button-counter></button-counter>
+    <button-counter></button-counter>
+    <button-counter></button-counter>
+    <button-counter></button-counter>
+  </div> -->
+  <div id="blog-post-demo">
+    <blog-post v-for="post of posts" :key="post.id" :title="post.title"></blog-post>
+  </div>
+  <script>
+    // Vue.component('button-counter', {
+    //   //funtion
+    //   data: function () {
+    //     return {
+    //       count: 0
+    //     }
+    //   },
+    //   // //object
+    //   // data: {
+    //   //   count: 0
+    //   // },
+    //   template: '<button @click="count++"> You clicked me {{ count }} times.</button>'
+    // })
+    // new Vue({
+    //   el: '#components-demo'
+    // })
+
+    Vue.component('blog-post', {
+      props: ['title'],
+      template: '<h3>{{ title }}</h3>'
+    })
+
+    new Vue({
+      el: '#blog-post-demo',
+      data: {
+        posts: [
+          { id: 1, title: 'My journey with Vue' },
+          { id: 2, title: 'Blogging with Vue' },
+          { id: 3, title: 'why vue is so fun' },
+        ]
+      }
+    })
+  </script>
+
+</body>
+
+</html>
